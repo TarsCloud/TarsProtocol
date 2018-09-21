@@ -335,7 +335,7 @@ struct TestInfo2
 ```
 Among them, the default TestInfo2 structure encoding results are:
 
-![tars](../docs/images/tars_tupstruct.png)
+![tars](../docs/images/tars_tupstruct_en.png)
 
 ## 2.2. Message format
 
