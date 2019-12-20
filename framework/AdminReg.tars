@@ -496,7 +496,7 @@ module tars
          * @param nodeName   : node id
          * @param out result : 结果描述
          *
-         * @return : 返回值详见tafErrCode枚举值
+         * @return : 返回值详见tarsErrCode枚举值
          */
         int getLogFileList(string application, string serverName, string nodeName, out vector<string> logFileList);
 
@@ -510,7 +510,7 @@ module tars
          * @param cmd   : 命令信息
          * @param out fileData : 结果描述
          *
-         * @return : 返回值详见tafErrCode枚举值
+         * @return : 返回值详见tarsErrCode枚举值
          */
         int getLogData(string application, string serverName, string nodeName, string logFile, string cmd, out string fileData);
 
