@@ -207,10 +207,20 @@ module tars
         * 获取机器没有使用的共享内存的key列表,每台机器最多分配256个key, -1分配失败
         */
         int getUnusedShmKeys(int count, out vector<int> shm_keys);
-        
-        /*
-        * 重新获取部署在该节点的服务配置文件
+
+        /**
+        * 列举某个app下面某个服务的日志文件列表，以文件最后修改时间倒排序
         */
+        int getLogFileList(string application, string serverName, out vector<string> logFileList);
+
+        /**
+        * 获取某个日志文件的内容，cmd表示参数， 比如 tail -1000 ${logFile}| grep xxx
+        */
+        int getLogData(string application, string serverName, string logFile, string cmd, out string fileData);
+
+    /*
+    * 重新获取部署在该节点的服务配置文件
+    */
 //        int reloadServerConf(string application,string serverName, out string result);                        
      };
 
