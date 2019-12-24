@@ -1,46 +1,70 @@
 module tars
 {
 
-// ÈÏÖ¤×´Ì¬£º
-enum AUTH_STATE
+/*
+* local auth
+*/
+struct BasicAuthInfo
 {
-    AUTH_INIT = -127,    // ¼øÈ¨µÄÎ´³õÊ¼»¯Öµ
-    AUTH_SUCC = 0,       // ¼øÈ¨³É¹¦Íê³É
-    AUTH_WAIT_RSP = 127, // µÈ´ıAUTH·şÎñ¼øÈ¨·µ»Ø,ÕâÖÖ×´Ì¬ÏÂ²»Ó¦¸ÃÊÕµ½¼øÈ¨ÇëÇó
-
-    AUTH_PROTO_ERR = -100,      // Ğ­Òé´íÎó
-    AUTH_WRONG_OBJ = -101,      // obj²»´æÔÚ
-    AUTH_WRONG_CLIENT = -102,   // client app.server²»´æÔÚ
-    AUTH_WRONG_TOKEN = -103,    // token not match
-    AUTH_ERROR = -104,          // ¼øÈ¨ÆäËü´íÎó
-
-    // ÆäËü¸ºÊı [-1,-99] : ÈÏÖ¤µÄÊ§°Ü×´Ì¬£¬ÓÃ»§×Ô¶¨Òå
+    1 optional string sObjName;
+    2 optional string sAccessKey; // AK
+    3 optional string sSecretKey; // SK plainText
+    4 optional string sHashSecretKey2; // or SK with sha 2 times, ascii format
 };
-
-// ÈÏÖ¤ÀàĞÍ£º
-enum AUTH_TYPE
-{
-    AUTH_TYPENONE = 0,      // ÎŞ
-    AUTH_TYPEREMOTE = 1,    // ×ßauthserver
-
-    //AUTH_TYPEANONY = 2,   // ¼øÈ¨ÔÊĞíÄäÃû
-    //AUTH_TYPEREMOTE = 2,  // Òì²½¼øÈ¨²»ÔÙÖ§³Ö£¬201804
-};
-
 
 /*
-* tokenÎ¨Ò»±êÊ¶
+* The auth message client send
+*/
+struct BasicAuthPackage
+{
+    1 require string sObjName;
+    2 require string sAccessKey; // AK
+    3 require long iTime; // timestamp
+    4 optional string sHashMethod = "sha1";
+
+    // how to use sign
+    // 1. tmpKey = md5sum(secret2 | timestamp); all know this 16bytes
+    // 2. client use tmpKey to enc secret1, ie, the client knows secret
+    // 3. server use tmpKey to dec secret1, then sha1(secret1) to check if ok
+    5 optional string sSignature;
+};
+
+// è®¤è¯çŠ¶æ€ï¼š
+enum AUTH_STATE
+{
+    AUTH_INIT = -127,
+    AUTH_SUCC = 0,
+
+    AUTH_PROTO_ERR = -100,
+    AUTH_WRONG_OBJ = -101,
+    AUTH_WRONG_AK = -102,
+    AUTH_WRONG_TIME = -103, // wrong timestamp
+    AUTH_NOT_SUPPORT_ENC = -104,
+    AUTH_DEC_FAIL = -105, // may be wrong secret key
+    AUTH_ERROR = -106,
+    // other positive : user defined intermediate states
+    // other negative : user defined failed states
+};
+
+enum AUTH_TYPE
+{
+    AUTH_TYPENONE = 0, // no auth
+    AUTH_TYPELOCAL = 1, // local auth
+};
+
+/*
+* tokenå”¯ä¸€æ ‡è¯†
 */
 struct TokenKey
 {
     1 require string sApplication; // client's app
     2 require string sServer; // client's server
-	3 require string sObjName; // call this obj, nameÊÇÈ«¾ÖÎ¨Ò»µÄ
+	3 require string sObjName; // call this obj, nameæ˜¯å…¨å±€å”¯ä¸€çš„
 };
 
 
 /*
-* ¼øÈ¨ÇëÇó,´Óclientµ½ÒµÎñserverµ½AUTH
+* é‰´æƒè¯·æ±‚,ä»clientåˆ°ä¸šåŠ¡serveråˆ°AUTH
 */
 struct AuthRequest
 {
@@ -48,26 +72,26 @@ struct AuthRequest
     2 require string sToken;
 };
 
-/*¼øÈ¨½á¹ûÊÇint£¬ stateµÄÖµ*/
+/*é‰´æƒç»“æœæ˜¯intï¼Œ stateçš„å€¼*/
 
 /*
-* ÕËºÅÇëÇó,´Ówebµ½AUTH
+* è´¦å·è¯·æ±‚,ä»webåˆ°AUTH
 */
 struct TokenRequest
 {
-	1 require vector<string> vObjName; // objnameÊÇÈ«¾ÖÎ¨Ò»µÄ
+	1 require vector<string> vObjName; // objnameæ˜¯å…¨å±€å”¯ä¸€çš„
 };
 
 /*
-* ÕËºÅ¿â,´ÓAUTHµ½web
+* è´¦å·åº“,ä»AUTHåˆ°web
 */
 struct TokenResponse
 {
-	1 require string sObjName;              // objnameÊÇÈ«¾ÖÎ¨Ò»µÄ
-	2 require map<string, string> mTokens;  // key = Ö÷µ÷·½app.server, value = token
+	1 require string sObjName;              // objnameæ˜¯å…¨å±€å”¯ä¸€çš„
+	2 require map<string, string> mTokens;  // key = ä¸»è°ƒæ–¹app.server, value = token
 };
 /*
-* req ÉêÇëtoken,´Ówebµ½AUTH, web ipĞèÒªÈÏÖ¤£¬×îºÃÊÇ°×Ãûµ¥
+* req ç”³è¯·token,ä»webåˆ°AUTH, web ipéœ€è¦è®¤è¯ï¼Œæœ€å¥½æ˜¯ç™½åå•
 */
 struct ApplyTokenRequest
 {
@@ -84,7 +108,7 @@ struct ApplyTokenResponse
 };
 
 /*
-* req É¾³ıtoken,´Ówebµ½AUTH, web ipĞèÒªÈÏÖ¤£¬×îºÃÊÇ°×Ãûµ¥
+* req åˆ é™¤token,ä»webåˆ°AUTH, web ipéœ€è¦è®¤è¯ï¼Œæœ€å¥½æ˜¯ç™½åå•
 */
 struct DeleteTokenRequest
 {
@@ -95,15 +119,15 @@ struct DeleteTokenRequest
 interface Auth
 {
     /**
-    * ÇëÇóÔ¶³Ì¼øÈ¨,±»µ÷·şÎñÏòauthserver·¢ËÍtoken£¬authserver·µ»Ø×´Ì¬
+    * è¯·æ±‚è¿œç¨‹é‰´æƒ,è¢«è°ƒæœåŠ¡å‘authserverå‘é€tokenï¼Œauthserverè¿”å›çŠ¶æ€
     **/
     int authProcess(AuthRequest request);
     /**
-    * ÇëÇótokenÕËºÅ¿â
+    * è¯·æ±‚tokenè´¦å·åº“
     **/
     vector<TokenResponse> getTokens(TokenRequest request);
     /**
-    * ´´½¨token
+    * åˆ›å»ºtoken
     **/
     ApplyTokenResponse applyToken(ApplyTokenRequest request);
     /**
