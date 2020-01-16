@@ -1,1 +1,1 @@
-[Tars Protocol documentation](https://tarscloud.github.io/TarsDocs/kaifa/tars_protocol-en.html)
+[Tars Protocol documentation](https://tarscloud.github.io/TarsDocs/kai-fa/tars_protocol-en.html)
