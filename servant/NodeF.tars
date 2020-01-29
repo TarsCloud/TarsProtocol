@@ -34,6 +34,13 @@ module tars
         int keepAlive(ServerInfo serverInfo);
         
         /**
+        * 向node定时上报serverInfo(Activing状态)
+        * @param serverInfo  服务状态
+        * @return  int
+        */
+        int keepActiving(ServerInfo serverInfo);
+
+        /**
         * 向node上报TARS版本信息
         * @param string  版本信息
         * @return  int 
