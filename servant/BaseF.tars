@@ -31,9 +31,6 @@ module tars
     // 单向调用
     const byte TARSONEWAY  = 0x01;
     
-    //push消息
-    const byte TARSPUSH    = 0x02;
-
     ////////////////////////////////////////////////////////////////
     // TARS定义的返回码
 
