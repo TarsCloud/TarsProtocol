@@ -62,5 +62,9 @@ QueryF.tars
 QueryF.h
 StatF.tars
 StatF.h)
-                      
+
+if(WIN32)
+INSTALL(FILES ${TARSPROTOCOLS} DESTINATION   tarsproto/protocol/)
+else()
 INSTALL(FILES ${TARSPROTOCOLS} DESTINATION   /home/tarsproto/protocol/)
+endif()
