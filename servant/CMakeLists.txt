@@ -42,7 +42,7 @@ add_custom_target(COPY-SERVENT-TARS ALL DEPENDS TUP-TARS ${OUT_DEPENDS_LIST})
 set(TARSPROTOCOLS
 AdminF.tars
 AdminF.h
-        AuthF.tars
+AuthF.tars
 AuthF.h
 BaseF.tars
 BaseF.h
