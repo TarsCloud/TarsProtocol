@@ -43,7 +43,7 @@ set(TARSPROTOCOLS
 AdminF.tars
 AdminF.h
         AuthF.tars
-Auth.h
+AuthF.h
 BaseF.tars
 BaseF.h
 ConfigF.tars
