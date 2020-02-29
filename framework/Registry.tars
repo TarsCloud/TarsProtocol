@@ -93,7 +93,7 @@ module tars
          *
          * @return 0-成功 others-失败
          */
-        int destroy(string nodeName);
+        int destroyNode(string nodeName);
 
         /**
          * 上报server的tars库版本
