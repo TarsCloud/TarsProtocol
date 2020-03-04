@@ -22,7 +22,7 @@ foreach (FILE ${SRC_LIST})
     add_custom_command(
             OUTPUT ${CP_SOURCE_H_DIR}/${TARS_H}
             WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-            COMMAND cp -rf ${TARS_H} ${CP_SOURCE_H_DIR}
+            COMMAND ${CMAKE_COMMAND} -E copy ${TARS_H} ${CP_SOURCE_H_DIR}
             DEPENDS ${TARS_H}
             COMMENT "cp -rf ${TARS_H} ${CP_SOURCE_H_DIR}")
 
