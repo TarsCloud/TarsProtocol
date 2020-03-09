@@ -70,6 +70,13 @@ interface Patch
     * @return int, 0: 成功, <0: 失败
     */
     int preparePatchFile(string app, string serverName, string patchFile);
+
+    /**
+    * 删除发布文件
+    * @return int, 0: 成功, <0: 失败
+    */
+    int deletePatchFile(string app, string serverName, string patchFile);
+
 };
 
 }; 

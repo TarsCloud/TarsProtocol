@@ -51,6 +51,8 @@ module tars
         EM_TARS_GET_PATCH_FILE_ERR = 1009,
         //调用patch server准备发布包失败
         EM_TARS_PREPARE_ERR = 1010,
+        //不能执行
+        EM_TARS_CAN_NOT_EXECUTE = 1011,
         //未知错误
         EM_TARS_UNKNOWN_ERR = -1,
         //成功
@@ -138,27 +140,17 @@ module tars
         1 optional string taskNo;
         2 optional bool   serial;
         3 optional string userName;
-        4 optional EMTaskStatus status; 
+        4 optional EMTaskStatus status;
+        5 optional string createTime;
     };
 
-	enum ServerGridStatus
+    struct FrameworkServer
     {
-    	//正常发布服务
-		NORMAL	= 0,
-		//自动扩容时，灰度服务，即部分流量分到灰度节点上
-		GRID	= 1,
-		//发布服务，但是发布后，没用流量过来
-		NO_FLOW = 2	
+        0 require string serverName;
+        1 require string nodeName;
+        2 require string objName;
     };
-	
-    struct ServerGridDesc
-    {
-    	0 require string			application;
-		1 require string			servername;
-		2 require string			nodename;
-		3 require ServerGridStatus		status;
-    };
-	
+
     /**
      * admin 管理接口
      */
@@ -449,6 +441,29 @@ module tars
          */
         int getLogData(string application, string serverName, string nodeName, string logFile, string cmd, out string fileData);
 
+        /**
+        * 删除发布包
+        * @param application  : 服务所属应用名
+        * @param serverName   : 服务名
+        * @param patchFile: patchFile
+        *
+        * @return : 0-成功 others-失败
+        */
+        int deletePatchFile(string application,string serverName, string patchFile);
+
+        /**
+        * get server need check
+        *
+        * @return : 0-成功 others-失败
+        */
+        int getServers(out vector<FrameworkServer> servers);
+
+        /**
+        * 检查框架的联通性
+        *
+        * @return : 0-成功 others-失败
+        */
+        int checkServer(FrameworkServer server);
     };
 };
 

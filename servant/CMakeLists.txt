@@ -64,7 +64,14 @@ StatF.tars
 StatF.h)
 
 if(WIN32)
+<<<<<<< HEAD
 INSTALL(FILES ${TARSPROTOCOLS} DESTINATION   tarsproto/protocol/)
 else()
+=======
+INSTALL(FILES ${TARSPROTOCOLS} DESTINATION   c:\\tarsproto\\protocol\\)
+elseif(APPLE)
+INSTALL(FILES ${TARSPROTOCOLS} DESTINATION   $ENV{HOME}/tarsproto/protocol/)
+elseif(LINUX)
+>>>>>>> master
 INSTALL(FILES ${TARSPROTOCOLS} DESTINATION   /home/tarsproto/protocol/)
 endif()
