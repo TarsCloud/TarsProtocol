@@ -42,41 +42,39 @@ module tars
         //tars_stat / tars_property
         2 require string dataid;
 
-        //query conditions
-        //f_date、f_tflag最小、f_tflag最大，为必传条件，组合关系为and
-        3 require vector<Condition> conditions;
+        3 require string date;
 
-        //统计项
+        4 require string tflag1;
+        5 require string tflag2;
+
+        //query conditions
+        6 require vector<Condition> conditions;
+
+        //stat item
         //tars_stat     ["succ_count", "timeout_count", 'exce_count", "total_time"]
         //tars_property ["value"]
-        4 require vector<string> indexs;
+        7 require vector<string> indexs;
 
-        //group字段
-        //tars_stat     [f_date、master_name/interface_name/master_ip/slave_ip] 或者 [f_tflag]
-        //tars_property [f_date、master_name/master_ip/property_name/policy] 或者 [f_tflag]
-        5 require vector<string> groupby;
+        //group field
+        //tars_stat     [f_date、master_name/interface_name/master_ip/slave_ip] or [f_tflag]
+        //tars_property [f_date、master_name/master_ip/property_name/policy] or [f_tflag]
+        8 require vector<string> groupby;
     };
 
-    struct MonitorItem
+    struct MonitorQueryRsp
     {
-        //group字段值
-        0 require vector<string> groupFields;
-        //统计项的值
-        1 require vector<string> indexFields;
-    };
 
-    struct MonitorQueryRsp{
-        //0正常 -1异常
-        0 require int ret;
-        1 optional vector<MonitorItem> resultItems;
-        2 optional string msg;
+        0 require int ret;                              //0: succ, -1: error
+        1 optional string msg;
+        2 require string lastTime;
+        3 require int activeDb;
+        4 require int totalDb;
+        5 require vector<int> retThreads;
+        6 optional map<string, vector<double>> result;    //key: group1,group2,group3...
     };
 
     interface MonitorQuery
     {
-        /**
-         * 查询调用统计数据
-         **/
         int query(MonitorQueryReq req, out MonitorQueryRsp rsp);
     };
 };
