@@ -218,10 +218,10 @@ module tars
         */
         int getLogData(string application, string serverName, string logFile, string cmd, out string fileData);
 
-    /*
-    * 重新获取部署在该节点的服务配置文件
-    */
-//        int reloadServerConf(string application,string serverName, out string result);                        
+        /**
+        * 获取节点负载
+        */
+	 int getNodeLoad(string application, string serverName, int pid, out string fileData);
      };
 
 };
