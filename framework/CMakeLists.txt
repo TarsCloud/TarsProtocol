@@ -1,7 +1,8 @@
 set(OUT_DEPENDS_LIST)
 
-complice_tars(OUT_DEPENDS_LIST)
+complice_tars_framework(OUT_DEPENDS_LIST)
 
+# message(${OUT_DEPENDS_LIST})
 add_custom_target(FRAMEWORK-PROTOCOL ALL DEPENDS ${OUT_DEPENDS_LIST})
 
 set(FRAMEWORKPROTOCOLS
@@ -21,3 +22,4 @@ set(FRAMEWORKPROTOCOLS
         RegistryDescriptor.h)
 
 INSTALL(FILES ${FRAMEWORKPROTOCOLS} DESTINATION  include/framework)
+
