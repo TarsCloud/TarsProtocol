@@ -21,6 +21,7 @@ module tars
 
     const short TARSVERSION     = 0x01;
     const short TUPVERSION      = 0x03;
+    const short XMLVERSION      = 0x04;
     const short JSONVERSION     = 0x05;
 
     ////////////////////////////////////////////////////////////////
