@@ -1,8 +1,9 @@
 set(OUT_DEPENDS_LIST)
 
-complice_tars_framework(OUT_DEPENDS_LIST)
+set(SERVANT_PROTOCOL "${servant_SOURCE_DIR}/protocol/servant")
 
-# message(${OUT_DEPENDS_LIST})
+complice_tars(OUT_DEPENDS_LIST "" ${SERVANT_PROTOCOL})
+
 add_custom_target(FRAMEWORK-PROTOCOL ALL DEPENDS ${OUT_DEPENDS_LIST})
 
 set(FRAMEWORKPROTOCOLS
