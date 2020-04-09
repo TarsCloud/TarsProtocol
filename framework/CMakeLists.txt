@@ -4,7 +4,7 @@ set(SERVANT_PROTOCOL "${servant_SOURCE_DIR}/protocol/servant")
 
 complice_tars(OUT_DEPENDS_LIST "" ${SERVANT_PROTOCOL})
 
-add_custom_target(FRAMEWORK-PROTOCOL ALL DEPENDS ${OUT_DEPENDS_LIST})
+add_custom_target(FRAMEWORK-PROTOCOL ALL DEPENDS ${OUT_DEPENDS_LIST} COPY-SERVENT-TARS)
 
 set(FRAMEWORKPROTOCOLS
         AdminReg.tars
