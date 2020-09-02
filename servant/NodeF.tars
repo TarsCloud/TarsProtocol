@@ -46,5 +46,11 @@ module tars
         * @return  int 
         */      
         int reportVersion(string app,string serverName,string version);
+
+        /**
+        * 获取最近keepalive的时间戳
+        * @return 最后一次keepalive的时间戳
+        */
+        unsigned int getLatestKeepAliveTime();
     };
 };
