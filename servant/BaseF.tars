@@ -50,6 +50,7 @@ module tars
     const int TARSADAPTERNULL         = -10;     //客户端选路为空，服务不存在或者所有服务down掉了
     const int TARSINVOKEBYINVALIDESET = -11;     //客户端按set规则调用非法
     const int TARSCLIENTDECODEERR     = -12;     //客户端解码异常
+    const int TARSSENDREQUESTERR      = -13;     //发送出错
     const int TARSSERVERUNKNOWNERR    = -99;     //服务器端位置异常
 
     /////////////////////////////////////////////////////////////////
