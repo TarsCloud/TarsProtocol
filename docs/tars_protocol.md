@@ -1,1 +1,1 @@
-[Tars 协议文档](https://tarscloud.github.io/TarsDocs/kai-fa/tars_protocol.html)
+[Tars 协议文档](https://github.com/TarsCloud/TarsDocs/blob/master/base/tars-protocol.md)
