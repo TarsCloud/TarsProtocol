@@ -470,6 +470,13 @@ module tars
         * @return : 0-成功 others-失败
         */
         int checkServer(FrameworkServer server);
+
+        /**
+        * 获取framework的version
+        *
+        * @return : 0-成功 others-失败
+        */
+        int getVersion(out string version);
     };
 };
 
