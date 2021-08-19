@@ -40,6 +40,31 @@ struct FileInfo
     3 optional string md5;
 };
 
+
+struct FileContent
+{
+    /**
+    * 文件md5，文件id并校验最终文件准确性
+    **/
+    0 require string md5;
+    /**
+    * 文件名称
+    **/
+    1 require string name;
+    /**
+    * 是否第一个包(默认串行)
+    **/
+    2 require bool firstChunk;
+    /**
+    * 是否最后一个包(默认串行)
+    **/
+    3 require bool lastChunk;
+    /**
+    * 文件内容
+    **/
+    4 require vector<byte> content;
+};
+
 /**
  *
  * 发布服务的接口
@@ -77,6 +102,12 @@ interface Patch
     */
     int deletePatchFile(string app, string serverName, string patchFile);
 
+    /**
+        * 上传文件
+        * @param content, 文件分片
+        * @param int, 0:上传成功, <0: 上传失败
+        */
+    int upload(string app, string serverName, FileContent content);
 };
 
 }; 
