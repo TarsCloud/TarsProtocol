@@ -28,6 +28,16 @@ module tars
         4 require string sUserName;
     };
 
+    struct DockerRegistry
+    {
+        0 optional string sId;
+        1 optional string sRegistry;    //仓库地址
+        2 optional string sUserName;    //用户名
+        3 optional string sPassword;    //密码
+        4 optional bool   bSucc = false;//是否成功登录过
+
+    };
+
     /**
      * registry接口
      */
@@ -44,7 +54,6 @@ module tars
          */
         int registerNode(string nodeName, NodeInfo ni, LoadInfo li);
 
-
         /**
          * node上报心跳及机器负载
          *
@@ -52,7 +61,6 @@ module tars
          * @param load    node机器负载信息
          */
         int keepAlive(string nodeName, LoadInfo load);
-
 
         /**
          * 获取在该node部署的server列表
@@ -115,7 +123,6 @@ module tars
          */
         int getNodeTemplate(string nodeName, out string profileTemplate);
 
-
         /**
          * node通过接口获取连接上主控的node ip
          * @param sNodeIp:  node 的ip
@@ -124,13 +131,16 @@ module tars
          */
         int getClientIp(out string sClientIp);
 
-        
         /**
          * 发布服务完毕之后统一UPDATE发布版本和发布人
          *
          */
         int updatePatchResult(PatchResult result);
 
+        /**
+         * 获取docker的镜像仓库
+         */
+        int getDockerRegistry(out vector<DockerRegistry> doctorRegistries);
     };
 
 };

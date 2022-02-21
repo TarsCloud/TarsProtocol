@@ -56,7 +56,10 @@ module tars
         16 optional int configCenterPort;
         17 optional int asyncThreadNum;
         18 optional string setId;
-        19 optional string sJmx_port;  //tarsjava服务专用
+        19 optional string sJmx_port;   //tarsjava服务专用
+        20 optional string runType;     //"container": 则以容器方式运行
+        21 optional string baseImage;   //容器运行时指定的基础镜像
+        22 optional string sha;         //容器镜像的sha
     };
 
     struct ObjectName
