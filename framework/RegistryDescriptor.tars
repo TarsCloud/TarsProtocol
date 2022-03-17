@@ -60,6 +60,7 @@ module tars
         20 optional string runType;     //"container": 则以容器方式运行
         21 optional string baseImage;   //容器运行时指定的基础镜像
         22 optional string sha;         //容器镜像的sha
+        23 optional string baseImageId; //镜像ID, 便于定位仓库
     };
 
     struct ObjectName

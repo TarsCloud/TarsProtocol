@@ -28,6 +28,13 @@ module tars
         4 require string sUserName;
     };
 
+    struct BaseImageInfo
+    {
+        0 optional string id;
+        1 optional string image;
+        2 optional string registryId;
+    };
+
     struct DockerRegistry
     {
         0 optional string sId;
@@ -35,7 +42,7 @@ module tars
         2 optional string sUserName;    //用户名
         3 optional string sPassword;    //密码
         4 optional bool   bSucc = false;//是否成功登录过
-
+        5 optional vector<BaseImageInfo> baseImages;
     };
 
     /**
@@ -141,6 +148,7 @@ module tars
          * 获取docker的镜像仓库
          */
         int getDockerRegistry(out vector<DockerRegistry> doctorRegistries);
+
     };
 
 };
