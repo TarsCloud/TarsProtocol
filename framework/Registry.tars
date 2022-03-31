@@ -33,6 +33,7 @@ module tars
         0 optional string id;
         1 optional string image;
         2 optional string registryId;
+        3 optional string sha;
     };
 
     struct DockerRegistry
@@ -149,6 +150,10 @@ module tars
          */
         int getDockerRegistry(out vector<DockerRegistry> doctorRegistries);
 
+        /**
+         * 拉取基础镜像
+         */
+        int dockerPull(string baseImageId);
     };
 
 };
