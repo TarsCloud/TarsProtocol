@@ -46,6 +46,12 @@ module tars
         5 optional vector<BaseImageInfo> baseImages;
     };
 
+    struct FrameworkKey
+    {
+        0 optional string cuid;
+        1 optional string priKey;
+    };
+
     /**
      * registry接口
      */
@@ -154,6 +160,11 @@ module tars
          * 拉取基础镜像
          */
         int dockerPull(string baseImageId);
+
+        /**
+         * 获取框架在市场上的key
+         */
+        int getFrameworkKey(out FrameworkKey fKey);
     };
 
 };
