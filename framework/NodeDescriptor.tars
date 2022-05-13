@@ -63,10 +63,14 @@ module tars
         4 require short timeOut;
         5 require string dataDir;
         6 optional string version;
-        //启动tarsnode时，从start.tmp获取，设置的core大小,core file size,因为可能值为unlimited
-        7 optional string  coreFileSize;
-        //启动tarsnode时，从start.tmp获取，设置的open files
-        8 optional int    openFiles;
+        7 optional string  coreFileSize; //启动tarsnode时，从start.tmp获取，设置的core大小,core file size,因为可能值为unlimited
+        8 optional int   openFiles; //启动tarsnode时，从start.tmp获取，设置的open files
+    };
+
+    //上报节点
+    struct ReportNode
+    {
+        0 require string nodeName;
     };
 
     struct ServerStateInfo

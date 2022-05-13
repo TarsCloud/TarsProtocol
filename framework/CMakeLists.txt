@@ -13,6 +13,8 @@ set(FRAMEWORKPROTOCOLS
         MonitorQuery.h
         Node.tars
         Node.h
+        NodePush.tars
+        NodePush.h
         NodeDescriptor.tars
         NodeDescriptor.h
         Patch.tars

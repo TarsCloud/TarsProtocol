@@ -163,6 +163,20 @@ module tars
      */
     interface AdminReg
     {
+		/**
+		 * 长连接模式下, tarsnode上报自身
+		 *
+		 * @param nodeName   node名称(通常是IP)
+		 *
+		 * @return 注册是否成功
+		 */
+		int reportNode(string nodeName);
+
+		/**
+		 * tarsnode上报执行命令的结果
+		 *
+		 */
+		int reportResult(int requestId, string funcName, int ret, string result);
 
         /**
          * 请求异步任务

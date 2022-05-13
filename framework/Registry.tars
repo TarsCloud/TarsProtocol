@@ -58,6 +58,16 @@ module tars
     interface Registry
     {
         /**
+         * 长连接模式下, tarsnode上报自身
+         *
+         * @param ni   node详细信息
+         * @param li    node机器负载信息
+         *
+         * @return 注册是否成功
+         */
+        int reportNode(ReportNode rn);
+
+        /**
          * node启动的时候往registry注册一个session
          *
          * @param nodeName node名称

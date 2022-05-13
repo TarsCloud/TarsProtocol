@@ -21,7 +21,6 @@ module tars
 
     interface Node
     {
-
         /**
         * 销毁指定服务
         * @param application  服务所属应用名
@@ -38,27 +37,27 @@ module tars
         */
         int patchPro(PatchRequest req, out string result);
         
-        /**
-        * 下载指定文件
-        * @param application  服务所属应用名
-        * @param serverName   服务名
-        * @param file         文件名
-        * @param out result   失败说明
-        * @return  int 0成功  非0失败
-        */
-        int addFile(string application, string serverName, string file,out string result);
+        ///**
+        //* 下载指定文件
+        //* @param application  服务所属应用名
+        //* @param serverName   服务名
+        //* @param file         文件名
+        //* @param out result   失败说明
+        //* @return  int 0成功  非0失败
+        //*/
+        //int addFile(string application, string serverName, string file,out string result);
         
-        /**
-        * 获取node名称
-        * @return  string
-        */
-        string getName();
+        ///**
+        //* 获取node名称
+        //* @return  string
+        //*/
+        //string getName();
 
-        /**
-        * 获取node上负载
-        * @return  LoadInfo
-        */
-        LoadInfo getLoad();
+        ///**
+        //* 获取node上负载
+        //* @return  LoadInfo
+        //*/
+        //LoadInfo getLoad();
 
         /**
         * 关闭node
@@ -102,29 +101,29 @@ module tars
         */
         int notifyServer(string application, string serverName, string command, out string result);
 
-        /**
-        *  获取指定服务pid进程号
-        * @param application  服务所属应用名
-        * @param serverName  服务名
-        * @return  int
-        */
-        int getServerPid(string application,string serverName, out string result);
+        ///**
+        //*  获取指定服务pid进程号
+        //* @param application  服务所属应用名
+        //* @param serverName  服务名
+        //* @return  int
+        //*/
+        //int getServerPid(string application,string serverName, out string result);
 
-        /**
-        * 获取指定服务registry设置的状态
-        * @param application  服务所属应用名
-        * @param serverName  服务名
-        * @return  int
-        */
-        ServerState getSettingState(string application,string serverName, out string result);
+        ///**
+        //* 获取指定服务registry设置的状态
+        //* @param application  服务所属应用名
+        //* @param serverName  服务名
+        //* @return  int
+        //*/
+        //ServerState getSettingState(string application,string serverName, out string result);
 
-        /**
-        * 获取指定服务状态
-        * @param application  服务所属应用名
-        * @param serverName  服务名
-        * @return  ServerState
-        */
-        ServerState getState(string application,string serverName, out string result);
+        ///**
+        //* 获取指定服务状态
+        //* @param application  服务所属应用名
+        //* @param serverName  服务名
+        //* @return  ServerState
+        //*/
+        //ServerState getState(string application,string serverName, out string result);
 
         /**
         * 获取指定服务在node信息
@@ -134,13 +133,13 @@ module tars
         */
         int getStateInfo(string application,string serverName,out ServerStateInfo info,out string result);
 
-        /**
-        * 同步服务状态
-        * @param application  服务所属应用名
-        * @param serverName  服务名
-        * @return  int
-        */
-        int synState(string application,string serverName, out string result);
+        ///**
+        //* 同步服务状态
+        //* @param application  服务所属应用名
+        //* @param serverName  服务名
+        //* @return  int
+        //*/
+        //int synState(string application,string serverName, out string result);
 
         /**
         * 发布服务进度
@@ -151,19 +150,19 @@ module tars
         */
         int getPatchPercent(string application,string serverName,out PatchInfo tPatchInfo);
         
-        /**
-        *备份和删除cache的共享内存
-        *@param sFullCacheName cache服务全名
-        *@param sBackupPath  备份路径
-        *@param sKey  共享内存的key值，如果为空则通过路径和‘D’生成
-        *@return int 
-        */
-        int delCache(string sFullCacheName,string sBackupPath, string sKey, out string result);
-        
-        /**
-        * 获取机器没有使用的共享内存的key列表,每台机器最多分配256个key, -1分配失败
-        */
-        int getUnusedShmKeys(int count, out vector<int> shm_keys);
+        ///**
+        //*备份和删除cache的共享内存
+        //*@param sFullCacheName cache服务全名
+        //*@param sBackupPath  备份路径
+        //*@param sKey  共享内存的key值，如果为空则通过路径和‘D’生成
+        //*@return int
+        //*/
+        //int delCache(string sFullCacheName,string sBackupPath, string sKey, out string result);
+        //
+        ///**
+        //* 获取机器没有使用的共享内存的key列表,每台机器最多分配256个key, -1分配失败
+        //*/
+        //int getUnusedShmKeys(int count, out vector<int> shm_keys);
 
         /**
         * 列举某个app下面某个服务的日志文件列表，以文件最后修改时间倒排序
