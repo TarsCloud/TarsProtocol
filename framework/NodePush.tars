@@ -24,7 +24,7 @@ module tars
 		/**
 		 * 检查是否活着
 		 */
-		void ping(out int requestId);
+		void ping(out int requestId, out string nodeName);
 
         /**
          * 增强的发布接口
@@ -32,45 +32,45 @@ module tars
         * @param req  发布请求
         * @return  int 0成功 其它失败
         */
-		void patchPro(out int requestId, out PatchRequest req);
+		void patchPro(out int requestId, out string nodeName, out PatchRequest req);
 
         /**
         * 关闭node
         */
-		void shutdown(out int requestId);
+		void shutdown(out int requestId, out string nodeName);
 
         /**
         * 载入指定服务
         * @param application  服务所属应用名
         * @param serverName  服务名
         */
-		void loadServer(out int requestId, out string application, out string serverName);
+		void loadServer(out int requestId, out string nodeName, out string application, out string serverName);
 
         /**
         * 启动指定服务
         * @param application  服务所属应用名
         * @param serverName  服务名
         */
-		void startServer(out int requestId, out string application, out string serverName);
+		void startServer(out int requestId, out string nodeName, out string application, out string serverName);
 
         /**
         * 停止指定服务
         * @param application  服务所属应用名
         * @param serverName  服务名
         */
-		void stopServer(out int requestId, out string application, out string serverName);
+		void stopServer(out int requestId, out string nodeName, out string application, out string serverName);
 
         /**
         * 通知服务
         */
-		void notifyServer(out int requestId, out string application, out string serverName, out string command);
+		void notifyServer(out int requestId, out string nodeName, out string application, out string serverName, out string command);
 
         /**
         * 获取指定服务在node信息
         * @param application  服务所属应用名
         * @param serverName  服务名
         */
-		void getStateInfo(out int requestId, out string application, out string serverName);
+		void getStateInfo(out int requestId, out string nodeName, out string application, out string serverName);
 
         /**
         * 发布服务进度
@@ -78,27 +78,27 @@ module tars
         * @param serverName  服务名
         * @out tPatchInfo下载信息
         */
-		void getPatchPercent(out int requestId, out string application, out string serverName);
+		void getPatchPercent(out int requestId, out string nodeName, out string application, out string serverName);
 
         /**
         * 列举某个app下面某个服务的日志文件列表，以文件最后修改时间倒排序
         */
-		void getLogFileList(out int requestId, out string application, out string serverName);
+		void getLogFileList(out int requestId, out string nodeName, out string application, out string serverName);
 
         /**
         * 获取某个日志文件的内容，cmd表示参数， 比如 tail -1000 ${logFile}| grep xxx
         */
-		void getLogData(out int requestId, out string application, out string serverName, out string logFile, out string cmd);
+		void getLogData(out int requestId, out string nodeName, out string application, out string serverName, out string logFile, out string cmd);
 
         /**
         * 获取节点负载
         */
-		void getNodeLoad(out int requestId, out string application, out string serverName, out int pid);
+		void getNodeLoad(out int requestId, out string nodeName, out string application, out string serverName, out int pid);
 
 		/**
 		 * 强制docker登录
 		 */
-		void forceDockerLogin(out int requestId);
+		void forceDockerLogin(out int requestId, out string nodeName);
      };
 
 };
