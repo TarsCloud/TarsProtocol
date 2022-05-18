@@ -71,6 +71,7 @@ module tars
     struct ReportNode
     {
         0 require string nodeName;
+        1 require string sid;           //进程唯一
     };
 
     struct ServerStateInfo

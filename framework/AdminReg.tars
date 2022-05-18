@@ -168,11 +168,11 @@ module tars
 		/**
 		 * 长连接模式下, tarsnode上报自身
 		 *
-		 * @param nodeName   node名称(通常是IP)
-		 *
+		 * @param nodeName   node名称(通常是IP, 要能被其他节点解析的地址)
+		 * @param sid, sessionId, 客户端生成的唯一字符串
 		 * @return 注册是否成功
 		 */
-		int reportNode(string nodeName);
+		int reportNode(ReportNode rn);
 
 		/**
 		 * tarsnode上报执行命令的结果
@@ -270,8 +270,6 @@ module tars
          * @return : 0-成功 others-失败
          */
         int shutdownNode(string name, out string result);
-
-        /***********server****************/
 
         /**
          * 获取server列表
