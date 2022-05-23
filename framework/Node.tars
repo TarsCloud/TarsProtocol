@@ -150,14 +150,14 @@ module tars
         */
         int getPatchPercent(string application,string serverName,out PatchInfo tPatchInfo);
         
-        ///**
-        //*备份和删除cache的共享内存
-        //*@param sFullCacheName cache服务全名
-        //*@param sBackupPath  备份路径
-        //*@param sKey  共享内存的key值，如果为空则通过路径和‘D’生成
-        //*@return int
-        //*/
-        //int delCache(string sFullCacheName,string sBackupPath, string sKey, out string result);
+        /**
+        *备份和删除cache的共享内存
+        *@param sFullCacheName cache服务全名
+        *@param sBackupPath  备份路径
+        *@param sKey  共享内存的key值，如果为空则通过路径和‘D’生成
+        *@return int
+        */
+        int delCache(string sFullCacheName,string sBackupPath, string sKey, out string result);
         //
         ///**
         //* 获取机器没有使用的共享内存的key列表,每台机器最多分配256个key, -1分配失败

@@ -350,6 +350,18 @@ module tars
          */
         int restartServer(string application,string serverName, string nodeName, out string result);
 
+		/**
+		 * 从Node上删除特定server
+		 *
+		 * @param application: 应用
+		 * @param serverName : server名
+		 * @param nodeName   : node id
+		 * @param out result : 结果描述
+		 *
+		 * @return : 返回值详见tarsErrCode枚举值
+		 */
+		int destroyServer(string application,string serverName, string nodeName, out string result);
+
         /**
          * 通知server
          *
@@ -397,6 +409,15 @@ module tars
         * @return : 返回值详见tarsErrCode枚举值
         */
         int getPatchPercent(string application,string serverName,string nodeName,out PatchInfo tPatchInfo);
+
+		/**
+		*备份和删除cache的共享内存
+		*@param sFullCacheName cache服务全名
+				*@param sBackupPath  备份路径
+		*@param sKey  共享内存的key值，如果为空则通过路径和‘D’生成
+		*@return int
+		*/
+		int delCache(string nodeName, string sFullCacheName,string sBackupPath, string sKey, out string result);
 
         /**
          * 加载特定server
