@@ -160,6 +160,36 @@ module tars
         2 require string objName;
     };
 
+	struct ServerConf
+	{
+		0 optional string application;
+		1 optional string serverName;
+		2 optional string nodeName;
+		3 optional string basePath;
+		4 optional string exePath;
+		5 optional string settingState = "active";
+		6 optional string profile;
+		7 optional string serverType;
+		8 optional string startScript;
+		9 optional string stopScript;
+		10 optional string monitorScript;
+		11 optional int asyncThreadNum = 3;
+		12 optional string enableGroup = "M";		//N/Y
+		13 optional string ipGroupName;		//N/Y
+	};
+
+	struct AdapterConf
+	{
+		0 optional string adapterName;
+		1 optional int threadNum = 5;
+		2 optional string endpoint;
+		3 optional int maxConnections = 10240;
+		4 optional string allowIp;
+		5 optional string servant;
+		6 optional int queuecap = 100000;
+		7 optional int queuetimeout = 600000;
+		8 optional string protocol = "tars";		//tars/not_tars
+	};
     /**
      * admin 管理接口
      */
@@ -557,6 +587,68 @@ module tars
 		 * @params heartbeats: 心跳信息<节点名称, 心跳时间>
 		 */
 		int getNodeList(vector<string> nodeNames, out map<string, string> heartbeats);
+
+        /**
+         * 卸载服务(从数据库中删除数据)
+         *
+         * @param application: 应用
+         * @param serverName : server名
+         * @param nodeName   : node id
+         * @param out result : 结果描述
+         *
+         * @return : 返回值详见tarsErrCode枚举值
+         */
+        int uninstallServer(string application, string serverName, string nodeName, out string result);
+
+        /**
+         * 是否有服务
+         *
+         * @param application: 服务基本信心 
+         * @param serverName: 是否替换
+         * @return : 返回值详见tarsErrCode枚举值
+         */
+        int hasServer(string application, string serverName, out bool has);
+
+        /**
+         * 新增服务
+         *
+         * @param conf: 服务基本信心 
+         * @param replace: 是否替换(false时, 如果有冲突就insert失败)
+         * @return : 返回值详见tarsErrCode枚举值
+         */
+        int insertServerConf(ServerConf conf,  bool replace);
+
+        /**
+         * 新增adapter
+         *
+         * @param conf: 服务基本信心 
+         * @param replace: 是否替换(false时, 如果有冲突就insert失败)
+         * @return : 返回值详见tarsErrCode枚举值
+         */
+        int insertAdapterConf(string sApplication, string serverName, string nodeName, AdapterConf conf, bool replace);
+
+		/**
+		 * 新增配置文件
+		 *
+		 * @param replace: 是否替换(false时, 如果有冲突就insert失败)
+		 * @return : 返回值详见tarsErrCode枚举值
+		 */
+		int insertConfigFile(string sFullServerName, string fileName, string content, string nodeName, int level, bool replace);
+
+		/**
+		 * 获取配置文件ID
+		 *
+		 * @return : 返回值详见tarsErrCode枚举值
+		 */
+		int getConfigFileId(string sFullServerName, string fileName, string nodeName, int level, out int configId);
+
+		/**
+		 * 新增配置文件
+		 *
+		 * @param replace: 是否替换(false时, 如果有冲突就insert失败)
+		 * @return : 返回值详见tarsErrCode枚举值
+		 */
+		int insertHistoryConfigFile(int configId, string reason, string content, bool replace);
     };
 };
 

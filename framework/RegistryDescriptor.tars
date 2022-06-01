@@ -31,8 +31,8 @@ module tars
         8 require int grid;   //该字段已弃用，为平滑升级而保留定义
         9 optional string protocol;
         10 optional string handlegroup;
-        11 optional int shmkey  = 0;     //该字段用作共享内存key
-        12 optional int shmcap  = 0;    //该字段用作共享内存大小
+        11 optional int shmkey  = 0;     //该字段用作共享内存key(不再使用)
+        12 optional int shmcap  = 0;    //该字段用作共享内存大小(不再使用)
     };
 
     struct ServerDescriptor
