@@ -84,6 +84,7 @@ module tars
         4 optional string serverName;
         //setting states
         5 optional ServerState settingState;
+        6 optional map<string, string> exState;
     };
 
     struct PatchRequest
