@@ -190,6 +190,38 @@ module tars
 		7 optional int queuetimeout = 600000;
 		8 optional string protocol = "tars";		//tars/not_tars
 	};
+
+	struct PluginConf
+	{
+	    0 optional string name;
+	    1 optional string name_en;
+	    2 optional string obj;
+	    3 optional int    type;     //类型: 1, 全局插件; 2: 服务级别插件
+	    4 optional string path;     //转发路径
+	};
+
+    struct ServerTree
+    {
+        0 optional string application;
+        1 optional string server_name;
+        2 optional string enable_set;
+        3 optional string set_name;
+        4 optional string set_area;
+        5 optional string set_group;
+    };
+
+    struct PatchPackage
+    {
+        0 optional int id;
+        1 optional string md5;
+    };
+
+    struct ApplicationServerName
+    {
+        0 optional string application;
+        1 optional string serverName;
+    };
+
     /**
      * admin 管理接口
      */
@@ -649,6 +681,62 @@ module tars
 		 * @return : 返回值详见tarsErrCode枚举值
 		 */
 		int insertHistoryConfigFile(int configId, string reason, string content, bool replace);
+
+		/**
+		 * 注册插件
+		 *
+		 * @return : 返回值详见tarsErrCode枚举值
+		 */
+        int registerPlugin(PluginConf conf);
+
+		/**
+		 * 是否有有开发权限
+		 *
+		 * @return : 返回值详见tarsErrCode枚举值
+		 */
+		int hasDevAuth(string application, string serverName, string uid, out bool has);
+
+		/**
+		 * 是否有运维权限
+		 *
+		 * @return : 返回值详见tarsErrCode枚举值
+		 */
+		int hasOpeAuth(string application, string serverName, string uid, out bool has);
+
+		/**
+		 * 是否有有管理员权限
+		 *
+		 * @return : 返回值详见tarsErrCode枚举值
+		 */
+		int hasAdminAuth(string uid, out bool has);
+
+		/**
+		 * 解析ticket, uid不为空则有效, 否则无效需要重新登录
+		 *
+		 * @return : 返回值详见tarsErrCode枚举值
+		 */
+		int checkTicket(string ticket, out string uid);
+
+		/**
+		 * 获取目录树
+		 *
+		 * @return : 返回值详见tarsErrCode枚举值
+		 */
+        int getServerTree(out vector<ServerTree> tree);
+
+		/**
+		 * 获取发布包信息
+		 *
+		 * @return : 返回值详见tarsErrCode枚举值
+		 */
+        int getPatchPackage(string application, string serverName, int packageType, int defaultVersion, out PatchPackage pack);
+
+		/**
+		 * 根据服务完整名称, 获取服务基本信息列表
+		 *
+		 * @return : 返回值详见tarsErrCode枚举值
+		 */
+        int getServerNameList(vector<ApplicationServerName> fullServerName, out vector<map<string, string>> serverList);
     };
 };
 
