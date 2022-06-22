@@ -725,7 +725,7 @@ module tars
         int getServerTree(out vector<ServerTree> tree);
 
 		/**
-		 * 获取发布包信息
+		 * 获取发布包信息(packageType无效)
 		 *
 		 * @return : 返回值详见tarsErrCode枚举值
 		 */
