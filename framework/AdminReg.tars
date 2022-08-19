@@ -199,7 +199,7 @@ module tars
 	    3 optional int    type;     //类型: 1, 全局插件; 2: 服务级别插件
 	    4 optional string path;     //转发路径
 		5 optional bool   k8s = false;
-		6 optional int    extern = 0;   //外部连接
+		6 optional int    fextern = 0;   //外部连接
 	};
 
     struct ServerTree
