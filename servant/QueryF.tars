@@ -41,7 +41,7 @@ module tars
          */
         int findObjectById4Any(string id, out vector<EndpointF> activeEp, out vector<EndpointF> inactiveEp);
 
-        /** 根据id获取对象所有endpoint列表,功能同findObjectByIdInSameGroup
+        /** 在同一个group, 根据id获取对象所有endpoint列表,功能同findObjectByIdInSameGroup
          *
          * @param id         对象名称
          * @param activeEp   存活endpoint列表
@@ -78,6 +78,20 @@ module tars
         * @return:  0-成功  others-失败
         */
         int findObjectByIdInSameSet(string id, string setId, out vector<EndpointF> activeEp, out vector<EndpointF> inactiveEp);
+
+		/** 注册id变化的通知, 通知时会通知所有的变化内容
+		*
+		* @param ids         对象名称
+		* @return:  0-成功  others-失败
+		*/
+		int registerChange(string id);
+
+		/** 注册id变化的通知, 通知时后需要自己主动find
+		*
+		* @param ids         对象名称
+		* @return:  0-成功  others-失败
+		*/
+		int registerQuery(string id);
 
     };
 
