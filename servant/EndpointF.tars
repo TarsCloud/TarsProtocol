@@ -36,6 +36,7 @@ module tars
 		13 optional int authType;
     };
     key[EndpointF, host, port, timeout, istcp, grid, qos, weight, weightType, authType];
+
 };
 
 

@@ -82,17 +82,18 @@ module tars
 		/** 注册id变化的通知, 通知时会通知所有的变化内容
 		*
 		* @param ids         对象名称
+		* @param name       当前模块名称
 		* @return:  0-成功  others-失败
 		*/
-		int registerChange(string id);
+		int registerChange(vector<string> ids, string name);
 
 		/** 注册id变化的通知, 通知时后需要自己主动find
 		*
-		* @param ids         对象名称
+		* @param id         对象名称
+		* @param name       当前模块名称
 		* @return:  0-成功  others-失败
 		*/
-		int registerQuery(string id);
-
+		int registerQuery(string id, string name);
     };
 
 };

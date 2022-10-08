@@ -155,6 +155,16 @@ module tars
          */
         int getClientIp(out string sClientIp);
 
+		/**
+		 * 获取某ip所属group 用于机房部署  例如某ip属于那个机房
+		 *
+		 * @param nodeNmae   : ip
+		 * @param out int    : group id
+		 *
+		 * @return : 处理结果
+		 */
+		int getGroupId(string ip, out int groupId);
+
         /**
          * 发布服务完毕之后统一UPDATE发布版本和发布人
          *

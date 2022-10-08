@@ -18,6 +18,45 @@
 
 module tars
 {
+    enum FUNID
+    {
+        FUNID_findObjectById              = 0,
+        FUNID_findObjectById4Any          = 1,
+        FUNID_findObjectById4All          = 2,
+        FUNID_findObjectByIdInSameGroup   = 3,
+        FUNID_findObjectByIdInSameStation = 4,
+        FUNID_findObjectByIdInSameSet     = 5
+    };
+
+    enum GroupUseSelect
+    {
+        ENUM_USE_WORK_GROUPID,
+        ENUM_USE_REAL_GROUPID
+    };
+
+    //在1.5.5版本中除去了(2 require vector<int> vActiveEpGroupId和3 require vector<int> vInactiveEpGroupId)
+    struct ObjectItem
+    {
+        0 require vector<EndpointF> vActiveEndpoints;
+        1 require vector<EndpointF> vInactiveEndpoints;
+    };
+
+    //set中服务的信息
+    struct SetServerInfo
+    {
+        0 optional string     sSetId;
+        1 optional string     sSetArea;
+        2 optional bool       bActive;
+        3 optional EndpointF  epf;
+    };
+
+    struct GroupPriorityEntry
+    {
+        0 optional string        sGroupID;
+        1 optional string        sStation;
+        2 optional map<int, bool>    setGroupID;
+    };
+
     /** 
      *获取对象endpoint的push接口
      */
@@ -29,7 +68,22 @@ module tars
          * @param activeEp   存活endpoint列表
          * @param inactiveEp 非存活endpoint列表
          */
-        void onChange(out string id, out vector<EndpointF> activeEp, out vector<EndpointF> inactiveEp);
+        void onChange(out string id, out ObjectItem item);
+
+        /** push set info
+        *
+         */
+        void onChangeSetInfo(out map<string,map<string,vector<SetServerInfo>>> setInfo);
+
+        /** push group info
+        *
+         */
+        void onChangeGroupPriorityEntry(out map<int, GroupPriorityEntry> group);
+
+        /** push group rule
+        *
+         */
+        void onChangeServerGroupRule(out vector<map<string, string>> serverGroupRule);
 
         /** push id服务列表变
         *

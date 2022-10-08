@@ -60,6 +60,8 @@ PropertyF.tars
 PropertyF.h
 QueryF.tars
 QueryF.h
+QueryPushF.tars
+QueryPushF.h
 StatF.tars
 StatF.h)
 
