@@ -23,7 +23,7 @@ foreach (FILE ${SRC_LIST})
             OUTPUT ${CP_SOURCE_H_DIR}/${TARS_H}
             WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
             COMMAND ${CMAKE_COMMAND} -E copy ${TARS_H} ${CP_SOURCE_H_DIR}
-            DEPENDS ${FILE}
+            DEPENDS ${FILE} tars2cpp
             COMMENT "${CMAKE_COMMAND} -E copy ${TARS_H} ${CP_SOURCE_H_DIR}")
 
     #设置依赖
