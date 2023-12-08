@@ -18,6 +18,18 @@
 
 module tars
 {
+
+	struct GetMasterSlaveLock
+	{
+		0 optional string application;
+		1 optional string server_name;
+		2 optional string node_name;
+		3 optional bool isMaster;
+		4 optional bool lastErr;
+		5 optional int  timeout;		//超时毫秒
+		6 optional int  bakType;		//0 不需要切换，1：自动主从切换， 2：自动切换但是不屏蔽主控路由
+	};
+
     /** 
      * 获取对象endpoint的query接口
      */
@@ -78,6 +90,29 @@ module tars
         * @return:  0-成功  others-失败
         */
         int findObjectByIdInSameSet(string id, string setId, out vector<EndpointF> activeEp, out vector<EndpointF> inactiveEp);
+
+		/** 注册id变化的通知, 通知时会通知所有的变化内容(企业版功能)
+		 *
+		 * @param ids         对象名称
+		 * @param name       当前模块名称
+		 * @return:  0-成功  others-失败
+		 */
+		int registerChange(vector<string> ids, string name);
+
+		/** 注册id变化的通知, 通知时后需要自己主动find(企业版功能)
+		 *
+		 * @param id         对象名称
+		 * @param name       当前模块名称
+		 * @return:  0-成功  others-失败
+		 */
+		int registerQuery(string id, string name);
+
+		/**
+		 * 获取锁, 实现业务服务一主多备的模式(企业版功能)
+		 * @param req
+		 * @return 0: 获取锁成功； 1：获取锁失败； 2： 数据异常， -1：其他异常
+		 */
+		int getLocker(GetMasterSlaveLock req);
 
     };
 
