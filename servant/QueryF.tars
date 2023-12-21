@@ -91,6 +91,13 @@ module tars
         */
         int findObjectByIdInSameSet(string id, string setId, out vector<EndpointF> activeEp, out vector<EndpointF> inactiveEp);
 
+		/** 查找某个obj部署在哪些节点上 (企业版功能)
+		 *
+		 * @param id       obj名称
+		 * @return:  0-成功  others-失败
+		 */
+		int findObjectNodeName(string id, out vector<string> nodeName);
+
 		/** 注册数据变化的通知, 通知变化内容(企业版功能)
 		 *
 		 * @param name       当前模块名称
