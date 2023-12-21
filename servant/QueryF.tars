@@ -91,15 +91,14 @@ module tars
         */
         int findObjectByIdInSameSet(string id, string setId, out vector<EndpointF> activeEp, out vector<EndpointF> inactiveEp);
 
-		/** 注册id变化的通知, 通知时会通知所有的变化内容(企业版功能)
+		/** 注册数据变化的通知, 通知变化内容(企业版功能)
 		 *
-		 * @param ids         对象名称
 		 * @param name       当前模块名称
 		 * @return:  0-成功  others-失败
 		 */
-		int registerChange(vector<string> ids, string name);
+		int registerChange(map<string, string> timestamp, string name);
 
-		/** 注册id变化的通知, 通知时后需要自己主动find(企业版功能)
+		/** 注册id变化的通知, 通知时后需要自己主动调用find去查找(企业版功能)
 		 *
 		 * @param id         对象名称
 		 * @param name       当前模块名称
