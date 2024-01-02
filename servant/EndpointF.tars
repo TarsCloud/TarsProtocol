@@ -34,6 +34,7 @@ module tars
         11 optional int weight;
         12 optional int weightType;
 		13 optional int authType;
+		14 optional string nodeName;
     };
     key[EndpointF, host, port, timeout, istcp, grid, qos, weight, weightType, authType];
 };
