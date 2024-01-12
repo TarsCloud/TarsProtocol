@@ -63,17 +63,17 @@ module tars
         23 optional string baseImageId; //镜像ID, 便于定位仓库
     };
 
-    struct ObjectName
-    {
-        0 require string ObjectId;
-    };
-
-    //在1.5.5版本中除去了(2 require vector<int> vActiveEpGroupId和3 require vector<int> vInactiveEpGroupId)
-    struct ObjectItem
-    {
-        0 require vector<EndpointF> vActiveEndpoints;
-        1 require vector<EndpointF> vInactiveEndpoints;
-    };
+    //struct ObjectName
+    //{
+    //    0 require string ObjectId;
+    //};
+    //
+    ////在1.5.5版本中除去了(2 require vector<int> vActiveEpGroupId和3 require vector<int> vInactiveEpGroupId)
+    //struct ObjectItem
+    //{
+    //    0 require vector<EndpointF> vActiveEndpoints;
+    //    1 require vector<EndpointF> vInactiveEndpoints;
+    //};
     //主控idc分组信息结构，用来缓存信息
     struct ServerGroupRule
     {

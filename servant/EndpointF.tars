@@ -37,6 +37,15 @@ module tars
 		14 optional string nodeName;
     };
     key[EndpointF, host, port, timeout, istcp, grid, qos, weight, weightType, authType];
+
+	struct ObjectItem
+	{
+		0 optional vector<EndpointF> vActiveEndpoints;
+		1 optional vector<EndpointF> vInactiveEndpoints;
+		2 optional vector<string> nodeNames;            //obj所属的nodenames
+	};
+
+
 };
 
 
