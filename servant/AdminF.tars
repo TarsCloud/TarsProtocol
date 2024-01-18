@@ -27,6 +27,11 @@ module tars
         * 通知服务
         */
         string notify(string command);
+
+        /**
+         * 获取服务的pid
+         */
+        long getPid();
     };
 };
 
