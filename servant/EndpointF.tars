@@ -42,7 +42,6 @@ module tars
 	{
 		0 optional vector<EndpointF> vActiveEndpoints;
 		1 optional vector<EndpointF> vInactiveEndpoints;
-		2 optional vector<string> nodeNames;            //obj所属的nodenames
 	};
 
 
